@@ -1,1 +1,1 @@
-# boilerplate-backend-node-express-mysql
+# node-express-mysql-boilerplate
