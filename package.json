@@ -1,0 +1,43 @@
+{
+  "name": "node-express-mysql-boilerplate",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js --ignore __tests__",
+    "pretest": "set NODE_ENV=test&& sequelize db:migrate",
+    "test": "set NODE_ENV=test&& jest --runInBand --detectOpenHandles --forceExit",
+    "posttest": "set NODE_ENV=test&& sequelize db:migrate:undo:all",
+    "format": "prettier --config .prettierrc \"src/**/*.js\" --write",
+    "lint": "eslint . --ext .js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "express": "^4.17.3",
+    "factory-girl": "^5.0.4",
+    "faker": "^5.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.17.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.11.0",
+    "husky": "4",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "sequelize-cli": "^6.4.1",
+    "sqlite3": "^5.0.2",
+    "supertest": "^6.2.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn format&&yarn lint&&yarn test",
+      "pre-push": "git pull"
+    }
+  }
+}
